@@ -1,17 +1,5 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
-
 <template>
-  <div class="container">
-    <Button type="primary">Default</Button>
-  </div>
+  <router-view v-slot="{ Component }">
+    <component :is="Component" />
+  </router-view>
 </template>
-
-<style lang="scss">
-.container {
-  Button {
-    color: red;
-  }
-}
-</style>
