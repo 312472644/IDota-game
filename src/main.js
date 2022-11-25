@@ -5,9 +5,8 @@ import Router from './routers';
 import './style.css';
 
 const app = createApp(App);
+// 按需加载ui组件
+injectComponents(app);
 
 app.use(Router);
 app.mount('#app');
-
-// 按需加载ui组件
-injectComponents(app);

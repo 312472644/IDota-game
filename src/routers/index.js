@@ -7,13 +7,13 @@ const router = createRouter({
   routes
 });
 
-router.beforeEach = (to, from, next) => {
+router.beforeEach((to, from, next) => {
   NProgress.start();
   next();
-};
+});
 
-router.afterEach = () => {
+router.afterEach(() => {
   NProgress.done();
-};
+});
 
 export default router;

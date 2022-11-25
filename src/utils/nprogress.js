@@ -2,8 +2,8 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
 NProgress.configure({
-  speed: 1500,
-  showSpinner: true,
+  speed: 1000,
+  showSpinner: false,
   trickleSpeed: 150,
   minimum: 0.1
 });

@@ -1,8 +1,8 @@
 <template>
   <nav class="menu">
     <router-link
-      v-for="(item, index) in menuList"
-      :key="index"
+      v-for="item in menuList"
+      :key="item.path"
       active-class="active"
       class="menu-item"
       :to="item.path"
@@ -29,6 +29,7 @@ const menuList = ref([
     color: #a8abb3;
     position: relative;
     margin-left: 40px;
+    transition: color 0.2s linear;
     &.active {
       color: #2d2f33;
     }

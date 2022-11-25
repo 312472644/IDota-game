@@ -10,3 +10,9 @@
   display: block;
   clear: both;
 }
+
+/*页面加载进度条*/
+#nprogress .bar {
+  background: #0c9dfc;
+  height: 1px;
+}
