@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import injectComponents from './utils/inject-view-ui.js';
+import injectComponents from './utils/inject-components.js';
 import App from './App.vue';
 import Router from './routers';
 import './style.css';

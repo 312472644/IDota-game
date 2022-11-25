@@ -3,6 +3,7 @@
     <condition @query="queryEvent" />
     <hero-list :hero-list="heroDataList" />
   </div>
+  <scroll-top />
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
