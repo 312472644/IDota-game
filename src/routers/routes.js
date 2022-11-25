@@ -31,6 +31,10 @@ const routes = [
         component: () => import('@pages/dotaTeam/index.vue')
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)',
+    component: () => import('@pages/notFound/index.vue')
   }
 ];
 

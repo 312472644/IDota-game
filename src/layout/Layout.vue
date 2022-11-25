@@ -15,5 +15,7 @@ import BaseHeader from './BaseHeader.vue';
 .content-wrap {
   width: 100%;
   min-width: 1280px;
+  margin: 20px 0;
+  background: #f5f6f7;
 }
 </style>

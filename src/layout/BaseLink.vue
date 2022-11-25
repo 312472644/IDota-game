@@ -15,9 +15,9 @@
 import { ref } from 'vue';
 
 const menuList = ref([
-  { title: '比赛数据', path: '/dota-matches' },
-  { title: '英雄', path: '/dota-hero' },
-  { title: '职业战队', path: '/dota-team' }
+  { title: '赛事数据', path: '/dota-matches' },
+  { title: '职业战队', path: '/dota-team' },
+  { title: '英雄资料', path: '/dota-hero' }
 ]);
 </script>
 <style lang="scss">

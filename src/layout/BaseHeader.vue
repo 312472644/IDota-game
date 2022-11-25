@@ -19,6 +19,9 @@ import BaseLink from './BaseLink.vue';
   background-color: #fff;
   border-bottom: 1px solid #f8f8f8;
   min-width: 1280px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
   .header-main {
     .logo-wrap {
       .logo {

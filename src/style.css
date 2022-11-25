@@ -1,3 +1,7 @@
+body {
+  background: #f5f6f7;
+}
+
 .wrap {
   width: 1280px;
   max-width: 1280px;
@@ -11,8 +15,30 @@
   clear: both;
 }
 
+.empty-data {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
 /*页面加载进度条*/
 #nprogress .bar {
   background: #0c9dfc;
   height: 1px;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  height: 3px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #b9b9b9;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
 }
