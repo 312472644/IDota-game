@@ -13,7 +13,8 @@ import {
   Tabs,
   TabPane,
   Exception,
-  Divider
+  Divider,
+  Modal
 } from 'view-ui-plus';
 import { ScrollTop } from '@components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
@@ -34,7 +35,8 @@ const componentMap = {
   Tabs,
   TabPane,
   Exception,
-  Divider
+  Divider,
+  Modal
 };
 
 const injectComponents = app => {

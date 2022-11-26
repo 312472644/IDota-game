@@ -7,11 +7,4 @@ const getDotaItemAPI = () => {
   });
 };
 
-// 获取物品详情
-const getDotaItemDetailAPI = () => {
-  return service({
-    url: 'https://www.dota2.com.cn/items/json?callback=HeropediaDFReceive'
-  });
-};
-
-export { getDotaItemAPI, getDotaItemDetailAPI };
+export { getDotaItemAPI };

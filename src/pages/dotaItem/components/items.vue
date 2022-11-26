@@ -13,6 +13,7 @@
             height="50px"
             :src="`https://www.dota2.com.cn/items/images/${category.img}`"
             lazy
+            @click="showDetail(category)"
           >
             <template #placeholder>
               <Spin size="large" fix />
@@ -24,12 +25,17 @@
   </div>
 </template>
 <script setup>
+const emit = defineEmits(['show-detail']);
 defineProps({
   dataList: {
     type: Array,
     default: () => []
   }
 });
+
+const showDetail = items => {
+  emit('show-detail', items);
+};
 </script>
 <style lang="scss">
 .items-container {

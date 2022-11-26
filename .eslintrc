@@ -15,6 +15,7 @@
     "vue/multi-word-component-names": "off",
     "max-attributes-per-line.html": "off",
     "vue/max-attributes-per-line": "off",
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
+    "vue/no-v-html": "off"
   }
 }

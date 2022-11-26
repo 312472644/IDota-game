@@ -1,0 +1,80 @@
+body {
+  background: #f5f6f7;
+}
+
+.wrap {
+  width: 1280px;
+  max-width: 1280px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.clear-float::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.empty-data {
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+}
+
+.cool-down {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  background-color: #2b2d2ccc;
+  overflow: hidden;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background-color: #b6bbb8;
+    transform: rotate(90deg);
+    transform-origin: bottom right;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    right: 11px;
+    top: -4px;
+    background-color: #b6bbb8;
+    transform: rotate(135deg);
+    transform-origin: bottom right;
+  }
+}
+
+.cost {
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  background-color: #00a6de;
+}
+
+/*页面加载进度条*/
+#nprogress .bar {
+  background: #0c9dfc;
+  height: 1px;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  height: 3px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #b9b9b9;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
