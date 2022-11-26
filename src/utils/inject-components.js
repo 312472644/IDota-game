@@ -9,7 +9,11 @@ import {
   Option,
   Input,
   Image,
-  Spin
+  Spin,
+  Tabs,
+  TabPane,
+  Exception,
+  Divider
 } from 'view-ui-plus';
 import { ScrollTop } from '@components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
@@ -26,7 +30,11 @@ const componentMap = {
   FormItem,
   Image,
   ScrollTop,
-  Spin
+  Spin,
+  Tabs,
+  TabPane,
+  Exception,
+  Divider
 };
 
 const injectComponents = app => {

@@ -4,7 +4,7 @@
       <div class="hero-header">
         <Image class="hero-logo" :src="item.index_img" lazy>
           <template #placeholder>
-            <Spin class="hero-logo" size="large" fix />
+            <Spin size="large" fix />
           </template>
         </Image>
       </div>

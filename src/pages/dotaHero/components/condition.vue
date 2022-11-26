@@ -29,7 +29,7 @@
   </Row>
 </template>
 <script setup>
-import { reactive, ref, defineExpose } from 'vue';
+import { reactive, ref } from 'vue';
 
 const emits = defineEmits(['query']);
 const queryParam = reactive({

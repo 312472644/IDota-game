@@ -1,5 +1,4 @@
 import Layout from '../layout/Layout.vue';
-
 const routes = [
   {
     path: '/',
@@ -29,6 +28,16 @@ const routes = [
       {
         path: '/dota-team',
         component: () => import('@pages/dotaTeam/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/dota-item',
+    component: Layout,
+    children: [
+      {
+        path: '/dota-item',
+        component: () => import('@pages/dotaItem/index.vue')
       }
     ]
   },
