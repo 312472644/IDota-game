@@ -14,7 +14,11 @@ import {
   TabPane,
   Exception,
   Divider,
-  Modal
+  Modal,
+  Tag,
+  Card,
+  PageHeader,
+  Message
 } from 'view-ui-plus';
 import { ScrollTop, Anchor, AnchorLink, wxBarCode } from '@components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
@@ -36,6 +40,9 @@ const componentMap = {
   Exception,
   Divider,
   Modal,
+  Card,
+  Tag,
+  PageHeader,
   Anchor,
   ScrollTop,
   AnchorLink,

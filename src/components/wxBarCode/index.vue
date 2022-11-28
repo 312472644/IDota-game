@@ -31,7 +31,7 @@ const visible = ref(true);
   }
   .ivu-modal-close {
     right: 2px !important;
-    top: 2px !important;
+    top: 5px !important;
   }
   .ivu-icon-ios-close {
     font-size: 25px !important;

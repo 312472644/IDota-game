@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="anchor-card" style="height: 300px">
+  <div :id="id" class="anchor-card">
     <div class="anchor-header">{{ title }}</div>
     <div class="anchor-body">
       <slot></slot>
@@ -21,6 +21,7 @@ defineProps({
 <style lang="scss">
 .anchor-card {
   .anchor-header {
+    color: #17233d;
     font-size: 15px;
     font-weight: bold;
   }
