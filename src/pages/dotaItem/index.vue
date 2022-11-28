@@ -1,5 +1,5 @@
 <template>
-  <div class="dota-item-container">
+  <div class="dota-item-container main-container">
     <Tabs>
       <TabPane label="商店物品" name="shop">
         <div class="filter">
@@ -81,7 +81,6 @@ const showDetail = item => {
   itemData.itemdata[item.name].cost = parseInt(cost);
   itemDetail.value = itemData.itemdata[item.name];
   itemDetailModalRef.value.visible = true;
-  console.log(itemData.itemdata[item.name]);
 };
 
 const filterEvent = () => {
@@ -101,7 +100,5 @@ onMounted(() => {
 <style lang="scss">
 .dota-item-container {
   padding: 20px;
-  background: #fff;
-  border: 1px solid #ebedf2;
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
   <div class="items-container">
     <div v-for="item in dataList" :key="item.name" class="items">
-      <Divider orientation="left" plain>{{ item.name }}</Divider>
+      <Divider class="divider" orientation="left" plain>
+        {{ item.name }}
+      </Divider>
       <div class="items-category-container">
         <div
           v-for="category in item.items"
@@ -54,6 +56,12 @@ const showDetail = items => {
         opacity: 0.8;
       }
     }
+  }
+  .divider.ivu-divider::before {
+    width: 1%;
+  }
+  .ivu-image-img {
+    border-radius: 3px;
   }
 }
 </style>

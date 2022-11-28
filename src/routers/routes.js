@@ -8,6 +8,10 @@ const routes = [
       {
         path: '/dota-hero',
         component: () => import('@pages/dotaHero/index.vue')
+      },
+      {
+        path: '/dota-hero/dota-hero-detail/:id',
+        component: () => import('@pages/dotaHeroDetail/index.vue')
       }
     ]
   },

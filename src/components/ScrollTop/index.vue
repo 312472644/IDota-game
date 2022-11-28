@@ -2,7 +2,7 @@
   <div v-if="showTop" class="scroll-top" @click="scrollTop"></div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 
 const props = defineProps({
   scrollTop: {
@@ -30,6 +30,10 @@ const eventListen = () => {
 
 onMounted(() => {
   eventListen();
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('scroll', scrollEvent);
 });
 </script>
 <style lang="scss">

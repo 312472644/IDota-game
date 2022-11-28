@@ -1,6 +1,11 @@
 <template>
   <div v-if="heroList.length > 0" class="hero-list-wrap">
-    <div v-for="item in heroList" :key="item.name_loc" class="hero-item">
+    <div
+      v-for="item in heroList"
+      :key="item.name_loc"
+      class="hero-item"
+      @click="toDetail(item)"
+    >
       <div class="hero-header">
         <Image class="hero-logo" :src="item.index_img" lazy>
           <template #placeholder>
@@ -18,6 +23,7 @@
 </template>
 <script setup>
 import { watch, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
   heroList: {
@@ -26,6 +32,12 @@ const props = defineProps({
   }
 });
 const heroList = ref([]);
+const router = useRouter();
+
+const toDetail = item => {
+  router.push({ path: `/dota-hero/dota-hero-detail/${item.id}` });
+};
+
 watch(
   props,
   newValue => {
@@ -45,7 +57,6 @@ watch(
   .hero-item {
     width: calc((100% - 50px) / 6);
     margin: 0 10px 10px 0;
-    border: 1px solid #ebedf2;
     transition: transform 0.2s ease-in-out;
     &:nth-of-type(6n) {
       margin: 0 0 10px 0;
@@ -67,9 +78,12 @@ watch(
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-top: 1px solid #ebedf2;
+      border: 1px solid #ebedf2;
+      border-top: none;
       padding: 5px 10px;
       background: #fff;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
     }
     .hero-attr-logo {
       width: 25px;

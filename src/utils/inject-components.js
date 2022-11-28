@@ -16,7 +16,7 @@ import {
   Divider,
   Modal
 } from 'view-ui-plus';
-import { ScrollTop } from '@components';
+import { ScrollTop, Anchor, AnchorLink, wxBarCode } from '@components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
 const componentMap = {
@@ -30,19 +30,20 @@ const componentMap = {
   Form,
   FormItem,
   Image,
-  ScrollTop,
   Spin,
   Tabs,
   TabPane,
   Exception,
   Divider,
-  Modal
+  Modal,
+  Anchor,
+  ScrollTop,
+  AnchorLink,
+  wxBarCode
 };
 
 const injectComponents = app => {
-  for (const [componentName, componentInstance] of Object.entries(
-    componentMap
-  )) {
+  for (const [componentName, componentInstance] of Object.entries(componentMap)) {
     app.component(componentName, componentInstance);
   }
 };

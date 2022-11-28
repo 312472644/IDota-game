@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-container">
+  <div class="main-container">
     <condition @query="queryEvent" />
     <hero-list :hero-list="heroDataList" />
   </div>
@@ -34,12 +34,15 @@ const getHeroList = async () => {
 const queryEvent = queryParam => {
   let dataList = lodash.cloneDeep(heroInitList);
   const { attr, complexity, heroName } = queryParam;
+  // 属性筛选
   if (attr > -1) {
     dataList = dataList.filter(item => item.primary_attr === attr);
   }
+  // 复杂度筛选
   if (complexity > -1) {
     dataList = dataList.filter(item => item.complexity === complexity);
   }
+  // 名称筛选
   if (heroName) {
     dataList = dataList.filter(item => item.name_loc === heroName);
   }
@@ -51,9 +54,3 @@ onMounted(() => {
   getHeroList();
 });
 </script>
-<style lang="scss">
-.hero-container {
-  background: #fff;
-  border: 1px solid #ebedf2;
-}
-</style>

@@ -12,10 +12,7 @@
     <div class="detail-desc" v-html="filter(itemDetail.desc)"></div>
     <div class="detail-notes" v-html="itemDetail.notes"></div>
     <div class="detail-attrib" v-html="itemDetail.attrib"></div>
-    <div
-      v-if="itemDetail.cd && (itemDetail.cost || itemDetail.mc)"
-      class="detail-extract"
-    >
+    <div v-if="itemDetail.cd || itemDetail.mc" class="detail-extract">
       <div class="detail-extract-item">
         <div class="cool-down"></div>
         <span class="extract-text">{{ itemDetail.cd }}</span>
@@ -23,7 +20,7 @@
       <div class="detail-extract-item">
         <div class="cost"></div>
         <span class="extract-text">
-          {{ itemDetail.cost || itemDetail.mc }}
+          {{ itemDetail.mc }}
         </span>
       </div>
     </div>
@@ -51,6 +48,7 @@ defineExpose({
 </script>
 <style lang="scss">
 .model-detail {
+  top: 20%;
   .ivu-modal-body {
     background: linear-gradient(45deg, #060606, #212121, #292928);
     border-radius: 3px;

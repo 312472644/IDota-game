@@ -2,6 +2,13 @@ body {
   background: #f5f6f7;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 .wrap {
   width: 1280px;
   max-width: 1280px;
@@ -48,6 +55,11 @@ body {
     transform: rotate(135deg);
     transform-origin: bottom right;
   }
+}
+
+.main-container {
+  background: #fff;
+  border: 1px solid #ebedf2;
 }
 
 .cost {

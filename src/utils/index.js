@@ -28,4 +28,25 @@ const jsonp = config => {
   document.body.removeChild(script);
 };
 
-export { jsonp };
+/**
+ * 节流
+ *
+ * @param {*} fn
+ * @param {*} delay
+ */
+const throttle = (fn, delay) => {
+  let preTime = Date.now();
+  return function () {
+    let context = this,
+      args = [...arguments],
+      nowTime = Date.now();
+
+    // 如果两次时间间隔超过了指定时间，则执行函数。
+    if (nowTime - preTime >= delay) {
+      preTime = Date.now();
+      return fn.apply(context, args);
+    }
+  };
+};
+
+export { jsonp, throttle };

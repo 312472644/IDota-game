@@ -1,3 +1,6 @@
-import ScrollTop from './ScrollTop/index.vue';
+import ScrollTop from './ScrollTop';
+import Anchor from './Anchor';
+import AnchorLink from './AnchorLink';
+import wxBarCode from './wxBarCode';
 
-export { ScrollTop };
+export { ScrollTop, Anchor, AnchorLink, wxBarCode };
