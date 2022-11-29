@@ -15,6 +15,7 @@ import {
   Exception,
   Divider,
   Modal,
+  Icon,
   Tag,
   Card,
   PageHeader,
@@ -46,7 +47,8 @@ const componentMap = {
   Anchor,
   ScrollTop,
   AnchorLink,
-  wxBarCode
+  wxBarCode,
+  Icon
 };
 
 const injectComponents = app => {

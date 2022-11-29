@@ -2,7 +2,7 @@
   <div class="hero-base-container">
     <div class="base-item base-properties-box">
       <div class="hero-avatar">
-        <img :src="heroInfo.index_img" />
+        <img class="image" :src="heroInfo.index_img" />
         <div class="health-bar">
           <span class="init-value">{{ heroInfo.max_health }}</span>
           <span class="grow-value">+{{ toFixed(heroInfo.health_regen) }}</span>
@@ -119,7 +119,7 @@ watch(props, newValue => {
     display: flex;
     flex-direction: column;
     width: 150px;
-    > img {
+    .image {
       width: 150px;
       height: 85px;
       border-top-left-radius: 3px;

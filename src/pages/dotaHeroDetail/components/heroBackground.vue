@@ -93,6 +93,7 @@ watch(props, newValue => {
     transform: translateY(-30px);
   }
   .hero-name {
+    color: #17233d;
     font-size: 20px;
   }
   .hero-desc-loc {

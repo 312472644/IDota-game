@@ -68,6 +68,27 @@ li {
   background-color: #00a6de;
 }
 
+.page-loading {
+  position: absolute;
+  width: 100%;
+}
+
+.spin-icon-load {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /*页面加载进度条*/
 #nprogress .bar {
   background: #0c9dfc;

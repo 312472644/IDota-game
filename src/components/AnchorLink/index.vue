@@ -21,9 +21,20 @@ defineProps({
 <style lang="scss">
 .anchor-card {
   .anchor-header {
+    position: relative;
     color: #17233d;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 400;
+    padding-left: 10px;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 2px;
+      height: 12px;
+      background: #17233d;
+    }
   }
   .anchor-body {
     padding: 10px 0;
