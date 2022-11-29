@@ -13,9 +13,8 @@
         <hero-base :data="heroInfo" />
       </anchor-link>
       <anchor-link id="skill" title="技能">
-        <hero-skill />
+        <hero-skill :data="heroInfo" />
       </anchor-link>
-      <anchor-link id="talent" title="天赋"> 天赋 </anchor-link>
     </div>
   </div>
   <anchor :anchor-list="anchorList" />
@@ -36,8 +35,7 @@ const loading = ref(true);
 const anchorList = [
   { title: '背景', name: 'background' },
   { title: '属性', name: 'attribute' },
-  { title: '技能', name: 'skill' },
-  { title: '天赋', name: 'talent' }
+  { title: '技能', name: 'skill' }
 ];
 const getHeroDetail = async () => {
   const heroId = route.params.id;

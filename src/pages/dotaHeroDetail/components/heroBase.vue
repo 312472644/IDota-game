@@ -75,6 +75,7 @@
 </template>
 <script setup>
 import { ref, watch } from 'vue';
+import lodash from 'lodash';
 import heroPosition from './heroPosition.vue';
 
 const props = defineProps({
@@ -87,7 +88,7 @@ const props = defineProps({
 const heroInfo = ref({});
 
 const watchCallback = newValue => {
-  heroInfo.value = Object.assign({}, newValue.data);
+  heroInfo.value = lodash.cloneDeep(newValue.data);
 };
 
 const toFixed = (number = 0, decimal = 1) => {

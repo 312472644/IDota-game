@@ -2,8 +2,7 @@
   <Modal v-model="visible" class="wx-bar-code" :mask="false" :footer-hide="true" :z-index="999">
     <template #header>
       <div class="bar-code-desc">
-        <span class="wx-app">刀塔辅助助手</span>
-        <span>微信小程序</span>
+        <span>刀塔辅助助手</span>
       </div>
     </template>
     <div>
@@ -42,9 +41,6 @@ const visible = ref(true);
   .bar-code-img {
     width: 100%;
     display: block;
-  }
-  .wx-app {
-    color: #2d8cf0;
   }
 }
 </style>

@@ -29,6 +29,7 @@
 </template>
 <script setup>
 import { ref, watch } from 'vue';
+import lodash from 'lodash';
 const props = defineProps({
   data: {
     type: Object,
@@ -67,7 +68,7 @@ const getLabelColor = (type, typeValue) => {
 };
 
 const watchCallback = newValue => {
-  heroInfo.value = Object.assign({}, newValue.data);
+  heroInfo.value = lodash.cloneDeep(newValue.data);
   const { primary_attr, complexity, attack_capability, hype_loc } = heroInfo.value;
   heroInfo.value.hype_loc = hype_loc.replaceAll(/[<b>]|[</b>]/g, '');
   primaryValue.value = getLabelColor('primary_attr', primary_attr);

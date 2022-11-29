@@ -1,5 +1,5 @@
 <template>
-  <div id="container" style="min-width: 400px; height: 150px"></div>
+  <div id="container" style="height: 180px"></div>
 </template>
 <script setup>
 import Highcharts from 'highcharts';
@@ -35,7 +35,7 @@ const loadChart = data => {
       style: { display: 'none' }
     },
     pane: {
-      size: '100%'
+      size: '85%'
     },
     credits: {
       enabled: false
