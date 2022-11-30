@@ -47,9 +47,7 @@
         </div>
         <div class="right">
           <div class="skill-name">{{ currentAbility.ability.name_loc }}</div>
-          <div v-if="currentAbility.ability.ability_type" class="special-mark">
-            {{ currentAbility.ability.ability_type === 'shard' ? '魔晶技能升级' : '神杖技能升级' }}
-          </div>
+          <div v-if="currentAbility.ability.ability_type" class="special-mark">{{ getUpgradeName }}</div>
           <div class="skill-desc" v-html="formatSpecialValue()"></div>
         </div>
       </div>
@@ -101,6 +99,21 @@ const currentAbility = ref({
 const talentValueList = ref([]);
 const talentDialogRef = ref();
 
+// 获取升级技能名称
+const getUpgradeName = computed(() => {
+  const { ability_is_granted_by_scepter, ability_is_granted_by_shard, ability_type } = currentAbility.value.ability;
+  if (ability_is_granted_by_scepter) {
+    return '神杖提供新技能';
+  }
+  if (ability_is_granted_by_shard) {
+    return '魔晶提供新技能';
+  }
+  if (ability_type) {
+    return ability_type === 'shard' ? '魔晶技能升级' : '神杖技能升级';
+  }
+  return '';
+});
+
 const getAbilities = () => {
   const { abilities } = heroInfo.value;
   // 魔晶技能
@@ -128,10 +141,10 @@ const getSpecialAbility = name => {
 
 // 转换文本中的动态参数
 const formatSpecialValue = () => {
-  const reg = /(%).*?(%)/;
+  const reg = /(%)(.*?)(%)/g;
   const ability = currentAbility.value.ability;
   const abilityType = ability.ability_type;
-  let result = ability.desc_loc;
+  let result = null;
   // 魔晶描述
   if (abilityType === 'shard') {
     result = ability.shard_loc;
@@ -140,15 +153,23 @@ const formatSpecialValue = () => {
   else if (abilityType === 'scepter') {
     result = ability.scepter_loc;
   }
+  // 兜底
+  if (!result) {
+    result = ability.desc_loc;
+  }
   if (result && reg.test(result)) {
-    // 获取动态参数
-    const dynamicName = result.match(reg)[0].replace(/%/g, '');
-    const dynamicValue = getSpecialAbility(dynamicName);
-    result = result.replace(reg, dynamicValue);
+    const dynamicNameList = result.match(reg);
+    dynamicNameList.forEach(item => {
+      const replaceName = item;
+      const dynamicName = item.replaceAll('%', '');
+      const dynamicValue = getSpecialAbility(dynamicName);
+      result = result.replace(replaceName, dynamicValue);
+    });
   }
   return result;
 };
 
+// 获取天赋技能中参数值
 const getTalentValue = (data, dynamicName) => {
   let value = '';
   const { abilities } = heroInfo.value;

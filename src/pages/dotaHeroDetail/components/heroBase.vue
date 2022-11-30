@@ -40,7 +40,7 @@
           <div class="body">攻击力</div>
         </div>
         <div class="category-card">
-          <div class="title">{{ heroInfo.attack_rate }}</div>
+          <div class="title">{{ toFixed(heroInfo.attack_rate) }}</div>
           <div class="body">攻击间隔</div>
         </div>
         <div class="category-card">
@@ -58,7 +58,7 @@
           <div class="body">护甲</div>
         </div>
         <div class="category-card">
-          <div class="title">{{ heroInfo.magic_resistance }}%</div>
+          <div class="title">{{ toFixed(heroInfo.magic_resistance) }}%</div>
           <div class="body">魔抗</div>
         </div>
         <div class="category-card">
