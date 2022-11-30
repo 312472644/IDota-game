@@ -66,8 +66,8 @@
           <div class="body">移速</div>
         </div>
         <div class="category-card">
-          <div class="title">{{ heroInfo.sight_range_day }}/{{ heroInfo.sight_range_night }}</div>
-          <div class="body">视野(白/夜)</div>
+          <div class="title">{{ toFixed(heroInfo.turn_rate) }}</div>
+          <div class="body">生命回复</div>
         </div>
       </div>
     </div>

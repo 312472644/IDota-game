@@ -16,6 +16,7 @@
         ></video>
       </div>
       <div class="skill-list-box">
+        <div class="skill-item talent" @click="toggleVisible"></div>
         <div
           v-for="(item, index) in abilityList"
           :key="item"
@@ -49,7 +50,7 @@
           <div v-if="currentAbility.ability.ability_type" class="special-mark">
             {{ currentAbility.ability.ability_type === 'shard' ? '魔晶技能升级' : '神杖技能升级' }}
           </div>
-          <div class="skill-desc" v-html="formatSpecialValue(currentAbility.ability.desc_loc)"></div>
+          <div class="skill-desc" v-html="formatSpecialValue()"></div>
         </div>
       </div>
       <!--技能基本信息-->
@@ -77,10 +78,12 @@
       </div>
     </div>
   </div>
+  <talent-dialog ref="talentDialogRef" :data-list="talentValueList" />
 </template>
 <script setup>
 import { ref, watch, computed } from 'vue';
 import lodash from 'lodash';
+import talentDialog from './talentDialog.vue';
 const props = defineProps({
   data: {
     type: Object,
@@ -95,6 +98,8 @@ const currentAbility = ref({
   index: 0,
   ability: {}
 });
+const talentValueList = ref([]);
+const talentDialogRef = ref();
 
 const getAbilities = () => {
   const { abilities } = heroInfo.value;
@@ -122,16 +127,89 @@ const getSpecialAbility = name => {
 };
 
 // 转换文本中的动态参数
-const formatSpecialValue = text => {
+const formatSpecialValue = () => {
   const reg = /(%).*?(%)/;
-  let result = text;
-  if (text && reg.test(text)) {
+  const ability = currentAbility.value.ability;
+  const abilityType = ability.ability_type;
+  let result = ability.desc_loc;
+  // 魔晶描述
+  if (abilityType === 'shard') {
+    result = ability.shard_loc;
+  }
+  // 神杖描述
+  else if (abilityType === 'scepter') {
+    result = ability.scepter_loc;
+  }
+  if (result && reg.test(result)) {
     // 获取动态参数
-    const dynamicName = text.match(reg)[0].replace(/%/g, '');
+    const dynamicName = result.match(reg)[0].replace(/%/g, '');
     const dynamicValue = getSpecialAbility(dynamicName);
     result = result.replace(reg, dynamicValue);
   }
   return result;
+};
+
+const getTalentValue = (data, dynamicName) => {
+  let value = '';
+  const { abilities } = heroInfo.value;
+  // 从talent数组中去查找
+  if (dynamicName === 'value') {
+    value = data.special_values.find(item => item.name === 'value')?.values_float.join('');
+  } else {
+    // 从abilities技能列表去查找
+    abilities.forEach(item => {
+      item.special_values.forEach(subItem => {
+        if (`bonus_${subItem.name}` === dynamicName && subItem.bonuses.length > 0) {
+          value = subItem?.bonuses[0]?.value;
+        }
+      });
+    });
+  }
+  return value?.toString()?.indexOf('.') > -1 ? parseFloat(value).toFixed(1) : value;
+};
+
+// 获取天赋中文本动态参数
+const getTalentText = (data, text, dynamicNameList = []) => {
+  const reg = /({s:)(.*?)(})/;
+  let result = text;
+  dynamicNameList.forEach(item => {
+    const regResult = item.match(reg);
+    const replaceName = regResult[0];
+    const dynamicName = regResult[2];
+    const dynamicValue = getTalentValue(data, dynamicName);
+    result = result.replace(replaceName, dynamicValue);
+  });
+  return result;
+};
+
+const getTalentGroup = talentList => {
+  const dataList = [];
+  let groupIndex = 10;
+  for (let i = 0; i < talentList.length; i++) {
+    if (i % 2 === 0) {
+      dataList.push({
+        level: groupIndex,
+        dataList: talentList.slice(i, i + 2)
+      });
+      groupIndex += 5;
+    }
+  }
+  talentValueList.value.push(...dataList.reverse());
+};
+
+const getTalentList = data => {
+  const { talents = [] } = data;
+  const talentList = talents.map(item => {
+    const { name_loc } = item;
+    const dynamicNameList = name_loc.match(/({).*?(})/g);
+    if (dynamicNameList) {
+      item.talentText = getTalentText(item, name_loc, dynamicNameList);
+    } else {
+      item.talentText = name_loc;
+    }
+    return item;
+  });
+  getTalentGroup(talentList);
 };
 
 // 获取技能数值
@@ -172,6 +250,7 @@ const showBottomValue = computed(() => {
 const watchCallback = newValue => {
   heroInfo.value = lodash.cloneDeep(newValue.data);
   getAbilities();
+  getTalentList(heroInfo.value);
 };
 
 const changeEvent = (item, index) => {
@@ -182,7 +261,11 @@ const changeEvent = (item, index) => {
   };
   setTimeout(() => {
     videoLoad.value = false;
-  }, 1000);
+  }, 500);
+};
+
+const toggleVisible = () => {
+  talentDialogRef.value.visible = true;
 };
 
 watch(props, newValue => {
@@ -211,7 +294,7 @@ watch(props, newValue => {
     }
     .video-box {
       position: relative;
-      height: 350px;
+      height: 345px;
     }
     video {
       width: 100%;
@@ -221,6 +304,7 @@ watch(props, newValue => {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 8px;
       .skill-item {
         position: relative;
         width: 60px;
@@ -321,10 +405,18 @@ watch(props, newValue => {
   }
   .special-mark {
     display: inline-block;
-    background: #ededed;
+    color: #fff;
+    background: #808695;
     margin: 5px 0;
     padding: 3px 6px;
     border-radius: 3px;
+  }
+  .talent {
+    background: rgba(0, 0, 0, 0.6);
+    background-image: url(/src/assets/images/talent.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
   }
 }
 </style>

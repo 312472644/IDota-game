@@ -48,7 +48,6 @@ const getHeroDetail = async () => {
   setTimeout(() => {
     loading.value = false;
   }, 1000);
-  console.log(heroInfo.value);
 };
 
 const back = () => {
