@@ -4,7 +4,7 @@
       v-for="item in menuList"
       :key="item.path"
       active-class="active"
-      class="menu-item"
+      :class="{ 'menu-item': true, active: activeRoute.path === item.path }"
       :to="item.path"
     >
       {{ item.title }}
@@ -12,14 +12,31 @@
   </nav>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
+const activeRoute = ref();
 const menuList = ref([
   { title: '赛事数据', path: '/dota-matches' },
   { title: '职业战队', path: '/dota-team' },
   { title: '英雄资料', path: '/dota-hero' },
   { title: '物品资料', path: '/dota-item' }
 ]);
+
+const getActiveRoute = path => {
+  const rootPath = path.split('/')[1];
+  const result = menuList.value.find(item => item.path === `/${rootPath}`);
+  activeRoute.value = result;
+};
+
+watch(
+  route,
+  newValue => {
+    getActiveRoute(newValue.path);
+  },
+  { immediate: true }
+);
 </script>
 <style lang="scss">
 .menu {

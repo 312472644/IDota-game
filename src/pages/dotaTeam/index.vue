@@ -1,3 +1,3 @@
 <template>
-  <div>dota-team</div>
+  <div>此功能待开发</div>
 </template>
