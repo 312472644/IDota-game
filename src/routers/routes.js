@@ -16,12 +16,20 @@ const routes = [
     ]
   },
   {
-    path: '/dota-matches',
+    path: '/dota-data',
     component: Layout,
     children: [
       {
-        path: '/dota-matches',
-        component: () => import('@pages/dotaMatches/index.vue')
+        path: '/dota-data',
+        component: () => import('@pages/dotaData/index.vue')
+      },
+      {
+        path: '/dota-data/dota-all-event',
+        component: () => import('@pages/dotaAllEvent/index.vue')
+      },
+      {
+        path: '/dota-data/dota-event-detail/:id',
+        component: () => import('@pages/dotaEventDetail/index.vue')
       }
     ]
   },
@@ -32,6 +40,10 @@ const routes = [
       {
         path: '/dota-team',
         component: () => import('@pages/dotaTeam/index.vue')
+      },
+      {
+        path: '/dota-team/dota-team-detail/:id',
+        component: () => import('@pages/dotaTeamDetail/index.vue')
       }
     ]
   },

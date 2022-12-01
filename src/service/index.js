@@ -11,7 +11,7 @@ const service = axios.create({
       return responseData;
     }
   ],
-  timeout: 3000
+  timeout: 5000
 });
 
 service.interceptors.response.use(

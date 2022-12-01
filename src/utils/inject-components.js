@@ -19,7 +19,8 @@ import {
   Tag,
   Card,
   PageHeader,
-  Message
+  Message,
+  Circle
 } from 'view-ui-plus';
 import { ScrollTop, Anchor, AnchorLink, wxBarCode } from '@components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
@@ -48,7 +49,8 @@ const componentMap = {
   ScrollTop,
   AnchorLink,
   wxBarCode,
-  Icon
+  Icon,
+  Circle
 };
 
 const injectComponents = app => {
