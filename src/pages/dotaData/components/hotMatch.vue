@@ -71,6 +71,7 @@ onMounted(() => {
     display: flex;
     align-items: center;
     .match-item {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
