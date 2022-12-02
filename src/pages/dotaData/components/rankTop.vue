@@ -26,7 +26,7 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 import { Message } from 'view-ui-plus';
-import { getRankListAPI } from '@service/proxy';
+import { getRankListAPI } from '@/service/proxy-request';
 
 const loading = ref(false);
 const rankList = reactive([]);

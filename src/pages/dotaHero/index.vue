@@ -11,7 +11,7 @@ import condition from './components/condition.vue';
 import heroList from './components/heroList.vue';
 import { getHeroListAPI } from './api';
 import lodash from 'lodash';
-import { heroMap } from '@utils/map.js';
+import { heroMap } from '@/utils/map.js';
 
 const heroInitList = [];
 const heroDataList = ref([]);

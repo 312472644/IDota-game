@@ -28,7 +28,7 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getTeamListAPI } from '../api';
+import { getTeamListAPI } from '@/service/common';
 
 const teamList = reactive([]);
 const loading = ref(false);

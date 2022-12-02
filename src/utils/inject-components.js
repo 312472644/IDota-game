@@ -22,7 +22,7 @@ import {
   Message,
   Circle
 } from 'view-ui-plus';
-import { ScrollTop, Anchor, AnchorLink, wxBarCode } from '@components';
+import { ScrollTop, Anchor, AnchorLink, wxBarCode } from '@/components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
 const componentMap = {

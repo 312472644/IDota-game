@@ -1,4 +1,4 @@
-import service from '@service';
+import service from '@/service';
 
 // 获取物品列表
 const getDotaItemAPI = () => {

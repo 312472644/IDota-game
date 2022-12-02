@@ -7,7 +7,7 @@
       <Icon type="ios-loading" color="#808695" size="18" class="spin-icon-load"></Icon>
       <div class="loading-text">加载中...</div>
     </Spin>
-    <div>
+    <div v-if="!loading">
       <div class="sub-title">冠绝段位英雄胜率</div>
       <div class="rank">
         <div v-for="(item, index) in heroList" :key="index" class="rank-item">
@@ -22,7 +22,7 @@
 </template>
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
-import { getHeroTopAPI, getVersionListAPI } from '../api';
+import { getHeroTopAPI, getVersionListAPI } from '@/service/common';
 
 const loading = ref(false);
 const heroList = reactive([]);
@@ -35,6 +35,7 @@ const getVersionList = async () => {
 };
 
 const getHeroTop = async () => {
+  loading.value = true;
   const response = await getHeroTopAPI(versionList[0], '冠绝');
   const dataList = response.data?.result || [];
   const sortList = dataList.sort((a, b) => b.hero_win_rate - a.hero_win_rate);
@@ -48,6 +49,9 @@ const getHeroTop = async () => {
       };
     })
   );
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
 };
 
 onMounted(async () => {

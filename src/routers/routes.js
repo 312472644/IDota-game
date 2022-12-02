@@ -7,11 +7,11 @@ const routes = [
     children: [
       {
         path: '/dota-hero',
-        component: () => import('@pages/dotaHero/index.vue')
+        component: () => import('@/pages/dotaHero/index.vue')
       },
       {
         path: '/dota-hero/dota-hero-detail/:id',
-        component: () => import('@pages/dotaHeroDetail/index.vue')
+        component: () => import('@/pages/dotaHeroDetail/index.vue')
       }
     ]
   },
@@ -21,15 +21,15 @@ const routes = [
     children: [
       {
         path: '/dota-data',
-        component: () => import('@pages/dotaData/index.vue')
+        component: () => import('@/pages/dotaData/index.vue')
       },
       {
         path: '/dota-data/dota-all-event',
-        component: () => import('@pages/dotaAllEvent/index.vue')
+        component: () => import('@/pages/dotaAllEvent/index.vue')
       },
       {
         path: '/dota-data/dota-event-detail/:id',
-        component: () => import('@pages/dotaEventDetail/index.vue')
+        component: () => import('@/pages/dotaEventDetail/index.vue')
       }
     ]
   },
@@ -39,11 +39,11 @@ const routes = [
     children: [
       {
         path: '/dota-team',
-        component: () => import('@pages/dotaTeam/index.vue')
+        component: () => import('@/pages/dotaTeam/index.vue')
       },
       {
         path: '/dota-team/dota-team-detail/:id',
-        component: () => import('@pages/dotaTeamDetail/index.vue')
+        component: () => import('@/pages/dotaTeamDetail/index.vue')
       }
     ]
   },
@@ -53,13 +53,13 @@ const routes = [
     children: [
       {
         path: '/dota-item',
-        component: () => import('@pages/dotaItem/index.vue')
+        component: () => import('@/pages/dotaItem/index.vue')
       }
     ]
   },
   {
     path: '/:pathMatch(.*)',
-    component: () => import('@pages/notFound/index.vue')
+    component: () => import('@/pages/notFound/index.vue')
   }
 ];
 

@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import routes from './routes';
-import NProgress from '@utils/nprogress';
+import NProgress from '@/utils/nprogress';
 
 const router = createRouter({
   history: createWebHashHistory(),

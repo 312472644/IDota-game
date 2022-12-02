@@ -15,7 +15,7 @@
 </template>
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { throttle } from '@utils';
+import { throttle } from '@/utils';
 
 const props = defineProps({
   anchorList: {

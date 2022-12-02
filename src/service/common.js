@@ -1,4 +1,4 @@
-import service from '@service';
+import service from '@/service';
 
 // 获取队伍列表
 const getTeamListAPI = () => {

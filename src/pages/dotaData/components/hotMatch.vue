@@ -28,7 +28,7 @@
 import { onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import dayjs from 'dayjs';
-import { getEventListAPI } from '../api';
+import { getEventListAPI } from '@/service/common';
 
 const loading = ref(false);
 const matchList = reactive([]);

@@ -1,4 +1,4 @@
-import service from '@service';
+import service from '@/service';
 
 // 获取英雄详情
 const getHeroDetailAPI = heroId => {

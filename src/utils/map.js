@@ -1,6 +1,6 @@
-import agile from '@assets/images/agile.png';
-import intelligence from '@assets/images/intelligence.png';
-import strong from '@assets/images/strong.png';
+import agile from '@/assets/images/agile.png';
+import intelligence from '@/assets/images/intelligence.png';
+import strong from '@/assets/images/strong.png';
 
 // 英雄属性
 const heroMap = {

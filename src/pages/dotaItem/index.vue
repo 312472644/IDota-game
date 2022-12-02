@@ -3,16 +3,8 @@
     <Tabs>
       <TabPane label="商店物品" name="shop">
         <div class="filter">
-          <Select
-            v-model="filterValue"
-            style="width: 220px"
-            @on-change="filterEvent"
-          >
-            <Option
-              v-for="item in shopCategoryList"
-              :key="item.value"
-              :value="item.value"
-            >
+          <Select v-model="filterValue" style="width: 220px" @on-change="filterEvent">
+            <Option v-for="item in shopCategoryList" :key="item.value" :value="item.value">
               {{ item.label }}
             </Option>
           </Select>
@@ -31,7 +23,7 @@ import { onMounted, ref } from 'vue';
 import loadsh from 'lodash';
 import items from './components/items.vue';
 import itemDetailModal from './components/itemDetailModal.vue';
-import { jsonp } from '@utils';
+import { jsonp } from '@/utils';
 import { getDotaItemAPI } from './api';
 
 const initData = ref();
