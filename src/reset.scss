@@ -14,3 +14,28 @@
     top: 5px !important;
   }
 }
+
+.ivu-table {
+  .ivu-table-header {
+    th {
+      padding: 12px 0;
+    }
+  }
+  th {
+    background-color: #fafafa;
+    border-bottom: 1px solid #0505050f;
+  }
+  td {
+    height: auto;
+    padding: 16px 0;
+    border-bottom: 1px solid #0505050f;
+  }
+  tr.ivu-table-row-hover td {
+    background-color: #fafafa;
+  }
+  &::before {
+    content: '';
+    background: #fff;
+    border-bottom: 1px solid #0505050f;
+  }
+}

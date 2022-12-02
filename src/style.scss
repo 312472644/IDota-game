@@ -93,6 +93,11 @@ li {
   }
 }
 
+.page-container {
+  text-align: right;
+  padding: 16px 0 10px 0;
+}
+
 /*页面加载进度条*/
 #nprogress .bar {
   background: #0c9dfc;
