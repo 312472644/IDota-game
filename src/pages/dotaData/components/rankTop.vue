@@ -7,7 +7,7 @@
       <Icon type="ios-loading" color="#808695" size="18" class="spin-icon-load"></Icon>
       <div class="loading-text">加载中...</div>
     </Spin>
-    <div>
+    <div v-if="!loading">
       <div class="sub-title">Elo等级分排名 k = 32, init = 1000</div>
       <div class="rank">
         <div v-for="(item, index) in rankList" :key="index" class="rank-item" @click="toDetail(item)">
@@ -32,9 +32,13 @@ const loading = ref(false);
 const rankList = reactive([]);
 
 const getRankList = async () => {
+  loading.value = true;
   const response = await getRankListAPI();
   const dataList = response.data?.result || [];
   rankList.push(...dataList.slice(0, 10));
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
 };
 
 const toDetail = data => {

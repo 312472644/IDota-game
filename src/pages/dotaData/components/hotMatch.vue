@@ -50,7 +50,7 @@ const getMatchList = async () => {
   );
   setTimeout(() => {
     loading.value = false;
-  }, 500);
+  }, 1000);
 };
 
 const toAllEvent = () => {

@@ -2,6 +2,7 @@
   <div class="dota-data-box">
     <team-top class="card" />
     <rank-top class="card" />
+    <hero-top class="card" />
     <hot-match class="card" />
   </div>
 </template>
@@ -9,6 +10,7 @@
 import teamTop from './components/teamTop.vue';
 import hotMatch from './components/hotMatch.vue';
 import rankTop from './components/rankTop.vue';
+import heroTop from './components/heroTop.vue';
 </script>
 <style lang="scss">
 .dota-data-box {

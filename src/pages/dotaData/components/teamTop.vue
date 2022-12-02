@@ -41,7 +41,7 @@ const getTeamList = async () => {
   teamList.push(...dataList.slice(0, 10));
   setTimeout(() => {
     loading.value = false;
-  }, 500);
+  }, 1000);
 };
 
 const toAllTeam = () => {

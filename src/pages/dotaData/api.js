@@ -34,4 +34,22 @@ const getEventListAPI = (
   });
 };
 
-export { getTeamListAPI, getMatchListAPI, getTeamPlayersAPI, getEventListAPI };
+// 获取版本列表
+const getVersionListAPI = () => {
+  return service({
+    url: 'https://gwapi.pwesports.cn/appdatacenter/api/v2/dota2/rank/versions'
+  });
+};
+
+// 获取英雄状态(bp信息、胜率等)
+const getHeroTopAPI = (version, rank) => {
+  return service({
+    url: 'https://gwapi.pwesports.cn/appdatacenter/api/v2/dota2/rank/hero',
+    params: {
+      rank,
+      version
+    }
+  });
+};
+
+export { getTeamListAPI, getMatchListAPI, getTeamPlayersAPI, getEventListAPI, getHeroTopAPI, getVersionListAPI };
