@@ -433,7 +433,7 @@ watch(props, newValue => {
     border-radius: 3px;
   }
   .talent {
-    background: rgba(0, 0, 0, 0.6);
+    background: #2d2e2f;
     background-image: url(/src/assets/images/talent.svg);
     background-repeat: no-repeat;
     background-position: center;

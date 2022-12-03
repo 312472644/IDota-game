@@ -1,6 +1,6 @@
 <template>
   <Modal v-model="visible" class="talent-dialog" :footer-hide="true" :closable="false">
-    <div class="tile">天赋树</div>
+    <div class="title">天赋树</div>
     <div class="talent">
       <div v-for="(item, index) in dataList" :key="index" class="talent-item">
         <div class="talent-loc">{{ item.dataList[1].talentText }}</div>
@@ -27,10 +27,15 @@ defineExpose({
 </script>
 <style lang="scss">
 .talent-dialog {
+  .ivu-modal-body {
+    background: linear-gradient(45deg, #060606, #212121, #292928);
+    border-radius: 3px;
+  }
   .ivu-modal-content {
     border-radius: 3px;
   }
-  .tile {
+  .title {
+    color: #fff;
     text-align: center;
     font-size: 14px;
   }
@@ -44,6 +49,7 @@ defineExpose({
         margin-bottom: 10px;
       }
       .talent-loc {
+        color: #f8f8f8;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -51,18 +57,19 @@ defineExpose({
         font-size: 13px;
         width: calc(50% - 25px);
         border-radius: 3px;
-        background: #ececec;
+        background: #2d2e2f;
       }
       .talent-level {
+        color: #ecd09e;
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px solid #dcdee2;
+        border: 3px solid #565656;
         font-size: 18px;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: #e6e6e6;
+        background: #2d2e2f;
       }
     }
   }

@@ -1,11 +1,6 @@
 <template>
   <div v-if="heroList.length > 0" class="hero-list-wrap">
-    <div
-      v-for="item in heroList"
-      :key="item.name_loc"
-      class="hero-item"
-      @click="toDetail(item)"
-    >
+    <div v-for="item in heroList" :key="item.name_loc" class="hero-item" @click="toDetail(item)">
       <div class="hero-header">
         <Image class="hero-logo" :src="item.index_img" lazy>
           <template #placeholder>
@@ -19,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div v-else class="empty-data">暂无数据</div>
+  <empty v-else />
 </template>
 <script setup>
 import { watch, ref } from 'vue';

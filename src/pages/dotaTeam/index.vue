@@ -7,11 +7,11 @@
       <template #name="{ row }">
         <div class="team">
           <div class="team-logo">
-            <div class="logo" :style="`background-image:url(${row.logo_url})`"></div>
+            <div class="logo" :style="`background-image:url(${row.logo_url || logoURL})`"></div>
           </div>
           <div class="team-detail">
             <div class="team-name">
-              <span>{{ row.name }}</span>
+              <span @click="toDetail(row)">{{ row.name }}</span>
               <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
             </div>
             <div class="team-date">{{ row.lastMatchDate }}</div>
@@ -26,13 +26,18 @@
 </template>
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import dayjs from 'dayjs';
 import lodash from 'lodash';
 import { getTeamListAPI } from '@/service/common';
 
+import defaultLogo from '@/assets/logo/dota.png';
+
 const loading = ref(false);
+const router = useRouter();
 const teamName = ref(null);
 const teamList = reactive([]);
+const logoURL = ref(defaultLogo);
 const columns = reactive([
   { title: '排名', key: 'rankNo', width: 80 },
   { title: '名称', key: 'name', slot: 'name' },
@@ -89,6 +94,10 @@ const pageChange = pageIndex => {
   teamList.push(...dataList.slice((pageIndex - 1) * 10, pageIndex * pageVo.size));
 };
 
+const toDetail = row => {
+  router.push({ path: `/dota-team/dota-team-detail/${row.team_id}` });
+};
+
 onMounted(() => {
   getTeamList();
 });
@@ -108,7 +117,7 @@ onMounted(() => {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #333;
+      background: #0f0f1e;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
