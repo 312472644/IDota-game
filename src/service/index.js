@@ -14,6 +14,16 @@ const service = axios.create({
   timeout: 5000
 });
 
+service.interceptors.request.use(async config => {
+  const cacheHeroList = localStorage.getItem('heroList');
+  // 缓存中文英雄列表
+  if (!cacheHeroList) {
+    const response = await axios.get('https://www.dota2.com.cn/datafeed/heroList?task=herolist');
+    localStorage.setItem('heroList', JSON.stringify(response.data.result.heroes));
+  }
+  return config;
+});
+
 service.interceptors.response.use(
   response => {
     return response;

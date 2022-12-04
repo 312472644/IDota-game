@@ -1,22 +1,8 @@
 import Layout from '../layout/Layout.vue';
 const routes = [
   {
+    redirect: '/dota-data',
     path: '/',
-    redirect: '/dota-hero',
-    component: Layout,
-    children: [
-      {
-        path: '/dota-hero',
-        component: () => import('@/pages/dotaHero/index.vue')
-      },
-      {
-        path: '/dota-hero/dota-hero-detail/:id',
-        component: () => import('@/pages/dotaHeroDetail/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/dota-data',
     component: Layout,
     children: [
       {
@@ -30,6 +16,20 @@ const routes = [
       {
         path: '/dota-data/dota-event-detail/:id',
         component: () => import('@/pages/dotaEventDetail/index.vue')
+      }
+    ]
+  },
+  {
+    path: '/dota-hero',
+    component: Layout,
+    children: [
+      {
+        path: '/dota-hero',
+        component: () => import('@/pages/dotaHero/index.vue')
+      },
+      {
+        path: '/dota-hero/dota-hero-detail/:id',
+        component: () => import('@/pages/dotaHeroDetail/index.vue')
       }
     ]
   },

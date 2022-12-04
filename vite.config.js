@@ -11,6 +11,9 @@ export default defineConfig({
       throwOnError: true
     })
   ],
+  server: {
+    open: true
+  },
   resolve: {
     alias: {
       '@/pages': path.resolve(__dirname, 'src/pages'),

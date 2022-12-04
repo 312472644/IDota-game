@@ -81,6 +81,14 @@ li {
   animation: spin 1s linear infinite;
 }
 
+.win {
+  color: #19be6b;
+}
+
+.lose {
+  color: #ed4014;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);

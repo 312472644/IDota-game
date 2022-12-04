@@ -49,4 +49,35 @@ const throttle = (fn, delay) => {
   };
 };
 
-export { jsonp, throttle };
+/**
+ * 时间戳转化成分秒
+ *
+ * @param {*} timeStamp
+ * @return {*}
+ */
+const formatTimeStampMS = timeStamp => {
+  const mins = Math.floor(timeStamp / 60);
+  const seconds = Math.floor(timeStamp % 60);
+  const result = {
+    mins: mins.toString().padStart(2, 0),
+    seconds: seconds.toString().padStart(2, 0)
+  };
+  return `${result.mins}:${result.seconds}`;
+};
+
+/**
+ * 从localStorage中获取英雄详细信息
+ *
+ * @param {*} heroId
+ * @return {*}
+ */
+const getCacheHeroInfo = heroId => {
+  const cacheHeroInfo = localStorage.getItem('heroList');
+  if (!cacheHeroInfo) {
+    return {};
+  }
+  const heroCNList = JSON.parse(localStorage.getItem('heroList'));
+  return heroCNList.find(item => item.id === heroId);
+};
+
+export { jsonp, throttle, formatTimeStampMS, getCacheHeroInfo };
