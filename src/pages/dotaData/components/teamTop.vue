@@ -3,10 +3,7 @@
     <template #extra>
       <span class="href" @click="toAllTeam">更多</span>
     </template>
-    <Spin :show="loading" class="page-loading" size="small">
-      <Icon type="ios-loading" color="#808695" size="18" class="spin-icon-load"></Icon>
-      <div class="loading-text">加载中...</div>
-    </Spin>
+    <page-loading :show="loading" />
     <div v-if="!loading">
       <div class="sub-title">Elo等级分排名 k = 32, init = 1000</div>
       <div class="team">

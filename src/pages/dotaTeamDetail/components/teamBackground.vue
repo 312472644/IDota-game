@@ -1,22 +1,25 @@
 <template>
-  <div class="team-bg-box">
-    <div class="team-avatar" :style="`background-image:url(${teamInfo.logo_url})`"></div>
-    <div class="team-summary">
-      <div class="team-name">
-        <div>{{ teamInfo.name }}</div>
-      </div>
-      <div class="team-detail">
-        <div class="team-detail-item">
-          <span class="team-item-label">胜</span>
-          <span class="team-item-value win">{{ teamInfo.wins }}</span>
+  <div class="team-bg-container">
+    <page-loading :show="loading" />
+    <div v-if="!loading" class="team-bg-content">
+      <div class="team-avatar" :style="`background-image:url(${teamInfo.logo_url})`"></div>
+      <div class="team-summary">
+        <div class="team-name">
+          <div>{{ teamInfo.name }}</div>
         </div>
-        <div class="team-detail-item">
-          <span class="team-item-label">败</span>
-          <span class="team-item-value lose">{{ teamInfo.losses }}</span>
-        </div>
-        <div class="team-detail-item">
-          <span class="team-item-label">等级分</span>
-          <span class="team-item-value">{{ parseInt(teamInfo.rating) }}</span>
+        <div class="team-detail">
+          <div class="team-detail-item">
+            <span class="team-item-label">胜</span>
+            <span class="team-item-value win">{{ teamInfo.wins }}</span>
+          </div>
+          <div class="team-detail-item">
+            <span class="team-item-label">败</span>
+            <span class="team-item-value lose">{{ teamInfo.losses }}</span>
+          </div>
+          <div class="team-detail-item">
+            <span class="team-item-label">等级分</span>
+            <span class="team-item-value">{{ parseInt(teamInfo.rating) }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -33,10 +36,15 @@ const props = defineProps({
   }
 });
 
+const loading = ref(false);
 const teamInfo = ref({});
 const getTeamDetail = async () => {
+  loading.value = true;
   const response = await getTeamDetailAPI(props.teamId);
   teamInfo.value = response.data || {};
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
 };
 
 onMounted(() => {
@@ -44,9 +52,12 @@ onMounted(() => {
 });
 </script>
 <style lang="scss">
-.team-bg-box {
+.team-bg-container {
   padding: 20px;
-  display: flex;
+  min-height: 50px;
+  .team-bg-content {
+    display: flex;
+  }
   .team-avatar {
     width: 80px;
     height: 80px;

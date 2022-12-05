@@ -117,7 +117,7 @@ onMounted(() => {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #0f0f1e;
+      background: #333;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;

@@ -1,15 +1,12 @@
 <template>
   <div class="overview-box">
-    <Spin :show="loading" class="page-loading" size="small">
-      <Icon type="ios-loading" color="#808695" size="18" class="spin-icon-load"></Icon>
-      <div class="loading-text">加载中...</div>
-    </Spin>
+    <page-loading :show="loading" />
     <div v-if="!loading" class="content-box">
       <div class="left">
         <div class="overview-card">
           <div class="title">最近比赛</div>
           <div class="content">
-            <Table class="table" :columns="matchOptions.columns" :data="matchOptions.dataList">
+            <Table class="table" :columns="matchOptions.columns" :data="matchOptions.tableList">
               <template #matchId="{ row }">
                 <div class="link">
                   <span>{{ row.match_id }}</span>
@@ -22,13 +19,13 @@
                 </div>
               </template>
               <template #duration="{ row }">
-                <div class="row-slot">
+                <div class="row-wrap">
                   <span>{{ row.duration }}</span>
                   <span>{{ row.radiant ? '天辉' : '夜魇' }}</span>
                 </div>
               </template>
               <template #radiant_win="{ row }">
-                <span :class="{ 'win-result': true, win: row.winResult, lose: !row.winResult }">
+                <span :class="{ win: row.winResult, lose: !row.winResult }">
                   {{ row.winResult ? '比赛胜利' : '比赛失败' }}
                 </span>
               </template>
@@ -47,7 +44,7 @@
         <div class="overview-card">
           <div class="title">当前玩家</div>
           <div class="content">
-            <Table class="table" :columns="playersOptions.columns" :data="playersOptions.dataList">
+            <Table class="table" :columns="playersOptions.columns" :data="playersOptions.tableList">
               <template #name="{ row }">
                 <div class="inline-logo-box">
                   <span :style="`background-image:url(${row.avatar})`" class="inline-logo"></span>
@@ -61,7 +58,7 @@
         <div class="overview-card">
           <div class="title">使用英雄</div>
           <div class="content">
-            <Table class="table" :columns="heroOptions.columns" :data="heroOptions.dataList">
+            <Table class="table" :columns="heroOptions.columns" :data="heroOptions.tableList">
               <template #hero_id="{ row }">
                 <div class="inline-logo-box">
                   <img :src="row.avatar" class="inline-logo" />
@@ -89,8 +86,10 @@ const props = defineProps({
   }
 });
 
+const loading = ref(false);
 const matchOptions = reactive({
   dataList: [],
+  tableList: [],
   columns: [
     { title: '比赛ID', key: 'matchId', slot: 'matchId' },
     { title: '时长', key: 'duration', slot: 'duration', width: '80px' },
@@ -99,9 +98,9 @@ const matchOptions = reactive({
   ]
 });
 
-const loading = ref(false);
 const playersOptions = reactive({
   dataList: [],
+  tableList: [],
   columns: [
     { title: '名称', key: 'name', slot: 'name' },
     { title: '游戏次数', key: 'games_played', width: '100px' },
@@ -111,6 +110,7 @@ const playersOptions = reactive({
 
 const heroOptions = reactive({
   dataList: [],
+  tableList: [],
   columns: [
     { title: '击杀英雄', key: 'hero_id', slot: 'hero_id' },
     { title: '游戏次数', key: 'games_played', width: '100px' },
@@ -128,7 +128,7 @@ const computedWin = data => {
 
 const getTeamMatchList = async () => {
   const response = await getTeamMatchListAPI(props.teamId);
-  const dataList = (response.data || []).slice(0, 20).map(item => {
+  const dataList = (response.data || []).map(item => {
     const { start_time, duration } = item;
     return {
       ...item,
@@ -137,6 +137,7 @@ const getTeamMatchList = async () => {
       duration: formatTimeStampMS(duration)
     };
   });
+  matchOptions.tableList.push(...dataList.slice(0, 20));
   matchOptions.dataList.push(...dataList);
 };
 
@@ -150,7 +151,8 @@ const getPlayerList = async () => {
       winRate: `${((wins / games_played) * 100).toFixed(0)}%`
     };
   });
-  playersOptions.dataList.push(...dataList.filter(item => item.is_current_team_member));
+  playersOptions.tableList.push(...dataList.filter(item => item.is_current_team_member));
+  playersOptions.dataList.push(...dataList);
 };
 
 const getHeroList = async () => {
@@ -165,7 +167,8 @@ const getHeroList = async () => {
       winRate: `${((wins / games_played) * 100).toFixed(0)}%`
     };
   });
-  heroOptions.dataList.push(...dataList.slice(0, 10));
+  heroOptions.tableList.push(...dataList.slice(0, 10));
+  heroOptions.dataList.push(...dataList);
 };
 
 const init = async () => {
@@ -178,6 +181,12 @@ const init = async () => {
   }, 1000);
 };
 
+defineExpose({
+  playersOptions,
+  heroOptions,
+  matchOptions
+});
+
 onMounted(() => {
   init();
 });
@@ -188,47 +197,6 @@ onMounted(() => {
   .content-box {
     display: flex;
   }
-  .table {
-    .ivu-table {
-      border: 1px solid rgba(5, 5, 5, 0.05);
-      border-bottom: none;
-      .ivu-table-overflowX {
-        overflow-x: hidden;
-      }
-    }
-    .link {
-      color: #2d8cf0;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    .symbol {
-      padding: 0 2px;
-    }
-    .date,
-    .win-result {
-      font-size: 12px;
-    }
-    .row-slot {
-      display: flex;
-      flex-direction: column;
-      font-size: 12px;
-    }
-    .inline-logo-box {
-      font-size: 12px;
-      .inline-logo {
-        display: inline-block;
-        width: 35px;
-        height: 35px;
-        margin-right: 10px;
-        vertical-align: middle;
-        border-radius: 50%;
-        background: #333;
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-      }
-    }
-  }
   .left {
     margin-right: 15px;
     width: calc(100% - 365px);
@@ -237,13 +205,6 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     width: 350px;
-  }
-  .overview-card {
-    margin-bottom: 10px;
-    .title {
-      font-size: 14px;
-      padding-bottom: 10px;
-    }
   }
 }
 </style>

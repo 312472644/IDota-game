@@ -70,7 +70,10 @@ li {
 
 .page-loading {
   position: absolute;
-  width: 100%;
+  background: #fff;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 .loading-text {

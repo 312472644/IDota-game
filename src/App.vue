@@ -2,5 +2,5 @@
   <router-view v-slot="{ Component }">
     <component :is="Component" />
   </router-view>
-  <wx-bar-code />
+  <we-chat-bar-code />
 </template>

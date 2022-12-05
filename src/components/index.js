@@ -1,7 +1,8 @@
 import ScrollTop from './ScrollTop';
 import Anchor from './Anchor';
 import AnchorLink from './AnchorLink';
-import wxBarCode from './wxBarCode';
+import WeChatBarCode from './WeChatBarCode';
 import Empty from './Empty';
+import PageLoading from './PageLoading';
 
-export { ScrollTop, Anchor, AnchorLink, wxBarCode, Empty };
+export { ScrollTop, Anchor, AnchorLink, WeChatBarCode, Empty, PageLoading };

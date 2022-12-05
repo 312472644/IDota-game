@@ -1,10 +1,7 @@
 <template>
   <page-header title="英雄资料" back hidden-breadcrumb @on-back="back" />
   <div class="hero-detail-container main-container">
-    <Spin :show="loading" class="page-loading" size="small">
-      <Icon type="ios-loading" color="#808695" size="18" class="spin-icon-load"></Icon>
-      <div class="loading-text">加载中...</div>
-    </Spin>
+    <page-loading :show="loading" />
     <div v-show="!loading">
       <anchor-link id="background" title="背景">
         <hero-background :data="heroInfo" />

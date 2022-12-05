@@ -1,6 +1,6 @@
 <template>
   <div class="dota-item-container main-container">
-    <Tabs>
+    <Tabs class="tab-animate" :animated="false">
       <TabPane label="商店物品" name="shop">
         <div class="filter">
           <Select v-model="filterValue" style="width: 220px" @on-change="filterEvent">

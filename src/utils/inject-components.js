@@ -22,7 +22,7 @@ import {
   Circle,
   Page
 } from 'view-ui-plus';
-import { ScrollTop, Anchor, AnchorLink, wxBarCode, Empty } from '@/components';
+import { ScrollTop, Anchor, AnchorLink, WeChatBarCode, Empty, PageLoading } from '@/components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
 const componentMap = {
@@ -51,8 +51,9 @@ const componentMap = {
   Anchor,
   ScrollTop,
   AnchorLink,
-  wxBarCode,
-  Empty
+  WeChatBarCode,
+  Empty,
+  PageLoading
 };
 
 const injectComponents = app => {

@@ -3,11 +3,11 @@
   <div class="dota-team-detail main-container">
     <team-background :team-id="teamId" />
     <div class="team-content">
-      <Tabs>
-        <TabPane label="概观" name="overview"><overview :team-id="teamId" /></TabPane>
-        <TabPane label="近期战绩" name="record"><record /></TabPane>
-        <TabPane label="英雄" name="heroes"><heroes /></TabPane>
-        <TabPane label="玩家" name="players"><players /></TabPane>
+      <Tabs class="tab-animate" :animated="false" @on-click="tabClick">
+        <TabPane label="概观" name="overview"><overview ref="overviewRef" :team-id="teamId" /></TabPane>
+        <TabPane label="近期战绩" name="record"><record :options="overviewRef.matchOptions" /></TabPane>
+        <TabPane label="英雄" name="heroes"><heroes :options="overviewRef.heroOptions" /></TabPane>
+        <TabPane label="玩家" name="players"><players :options="overviewRef.playersOptions" /></TabPane>
       </Tabs>
     </div>
   </div>
@@ -24,15 +24,30 @@ import record from './components/record.vue';
 const route = useRoute();
 const router = useRouter();
 const teamId = ref(route.params.id);
+const overviewRef = ref({});
 
 const back = () => {
   router.push({ path: '/dota-team' });
+};
+
+const tabClick = () => {
+  document.documentElement.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 };
 </script>
 <style lang="scss">
 .dota-team-detail {
   .team-content {
     padding: 0 20px 20px 20px;
+  }
+  .overview-card {
+    margin-bottom: 10px;
+    .title {
+      font-size: 14px;
+      padding-bottom: 10px;
+    }
   }
 }
 </style>

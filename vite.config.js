@@ -20,7 +20,8 @@ export default defineConfig({
       '@/assets': path.resolve(__dirname, 'src/assets'),
       '@/utils': path.resolve(__dirname, 'src/utils'),
       '@/service': path.resolve(__dirname, 'src/service'),
-      '@/components': path.resolve(__dirname, 'src/components')
+      '@/components': path.resolve(__dirname, 'src/components'),
+      '@/hooks': path.resolve(__dirname, 'src/hooks')
     },
     extensions: ['.vue', '.js']
   }
