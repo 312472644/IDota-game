@@ -1,18 +1,5 @@
 <template>
-  <div class="overview-card">
-    <div class="title">使用英雄</div>
-    <div class="content">
-      <Table class="table" :columns="options.columns" :data="hooksValue.tableList">
-        <template #hero_id="{ row }">
-          <div class="inline-logo-box">
-            <img :src="row.avatar" class="inline-logo" />
-            <span class="link">{{ row.heroCnName }}</span>
-            <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
-          </div>
-        </template>
-      </Table>
-    </div>
-  </div>
+  <heroes-table :columns="tableColumns" :data="hooksValue.tableList" />
   <div class="page-container">
     <Page
       v-model="hooksValue.pageVO.index"
@@ -28,6 +15,7 @@
 <script setup>
 import { reactive, watch } from 'vue';
 import { usePageQuery } from '@/hooks';
+import heroesTable from './heroesTable.vue';
 
 const props = defineProps({
   options: {
@@ -41,6 +29,11 @@ const props = defineProps({
   }
 });
 
+const tableColumns = reactive([
+  { title: '击杀英雄', key: 'hero_id', slot: 'hero_id' },
+  { title: '游戏次数', key: 'games_played', width: '200px' },
+  { title: '胜率', key: 'winRate', width: '200px' }
+]);
 const hooksValue = reactive({
   pageVO: {},
   tableList: [],

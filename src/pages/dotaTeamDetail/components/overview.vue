@@ -3,72 +3,11 @@
     <page-loading :show="loading" />
     <div v-if="!loading" class="content-box">
       <div class="left">
-        <div class="overview-card">
-          <div class="title">最近比赛</div>
-          <div class="content">
-            <Table class="table" :columns="matchOptions.columns" :data="matchOptions.tableList">
-              <template #matchId="{ row }">
-                <div class="link">
-                  <span>{{ row.match_id }}</span>
-                  <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
-                </div>
-                <div class="date">
-                  <span>{{ row.start_time }}</span>
-                  <span class="symbol">/</span>
-                  <span>{{ row.league_name }}</span>
-                </div>
-              </template>
-              <template #duration="{ row }">
-                <div class="row-wrap">
-                  <span>{{ row.duration }}</span>
-                  <span>{{ row.radiant ? '天辉' : '夜魇' }}</span>
-                </div>
-              </template>
-              <template #radiant_win="{ row }">
-                <span :class="{ win: row.winResult, lose: !row.winResult }">
-                  {{ row.winResult ? '比赛胜利' : '比赛失败' }}
-                </span>
-              </template>
-              <template #opposing="{ row }">
-                <div class="inline-logo-box">
-                  <span :style="`background-image:url(${row.opposing_team_logo})`" class="inline-logo"></span>
-                  <span class="link">{{ row.opposing_team_name }}</span>
-                  <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
-                </div>
-              </template>
-            </Table>
-          </div>
-        </div>
+        <record-table :columns="matchOptions.columns" :data="matchOptions.tableList" />
       </div>
       <div class="right">
-        <div class="overview-card">
-          <div class="title">当前玩家</div>
-          <div class="content">
-            <Table class="table" :columns="playersOptions.columns" :data="playersOptions.tableList">
-              <template #name="{ row }">
-                <div class="inline-logo-box">
-                  <span :style="`background-image:url(${row.avatar})`" class="inline-logo"></span>
-                  <span class="link">{{ row.name }}</span>
-                  <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
-                </div>
-              </template>
-            </Table>
-          </div>
-        </div>
-        <div class="overview-card">
-          <div class="title">使用英雄</div>
-          <div class="content">
-            <Table class="table" :columns="heroOptions.columns" :data="heroOptions.tableList">
-              <template #hero_id="{ row }">
-                <div class="inline-logo-box">
-                  <img :src="row.avatar" class="inline-logo" />
-                  <span class="link">{{ row.heroCnName }}</span>
-                  <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
-                </div>
-              </template>
-            </Table>
-          </div>
-        </div>
+        <players-table title="当前玩家" :columns="playersOptions.columns" :data="playersOptions.tableList" />
+        <heroes-table :columns="heroOptions.columns" :data="heroOptions.tableList" />
       </div>
     </div>
   </div>
@@ -78,6 +17,10 @@ import { onMounted, reactive, ref } from 'vue';
 import dayjs from 'dayjs';
 import { getTeamMatchListAPI, getTeamPlayersAPI, getTeamHeroesAPI } from '../api';
 import { formatTimeStampMS, getCacheHeroInfo } from '@/utils';
+
+import recordTable from './recordTable.vue';
+import heroesTable from './heroesTable.vue';
+import playersTable from './playersTable.vue';
 
 const props = defineProps({
   teamId: {
@@ -126,8 +69,8 @@ const computedWin = data => {
   return !radiant_win;
 };
 
-const getTeamMatchList = async () => {
-  const response = await getTeamMatchListAPI(props.teamId);
+const getTeamMatchList = async teamId => {
+  const response = await getTeamMatchListAPI(teamId);
   const dataList = (response.data || []).map(item => {
     const { start_time, duration } = item;
     return {
@@ -141,8 +84,8 @@ const getTeamMatchList = async () => {
   matchOptions.dataList.push(...dataList);
 };
 
-const getPlayerList = async () => {
-  const response = await getTeamPlayersAPI(props.teamId);
+const getPlayerList = async teamId => {
+  const response = await getTeamPlayersAPI(teamId);
   const dataList = (response.data || []).map(item => {
     const { account_id, wins, games_played } = item;
     return {
@@ -155,8 +98,8 @@ const getPlayerList = async () => {
   playersOptions.dataList.push(...dataList);
 };
 
-const getHeroList = async () => {
-  const response = await getTeamHeroesAPI(props.teamId);
+const getHeroList = async teamId => {
+  const response = await getTeamHeroesAPI(teamId);
   const dataList = (response.data || []).map(item => {
     const { wins, games_played } = item;
     const heroCN = getCacheHeroInfo(item.hero_id);
@@ -171,24 +114,35 @@ const getHeroList = async () => {
   heroOptions.dataList.push(...dataList);
 };
 
-const init = async () => {
+const reset = () => {
+  matchOptions.tableList = [];
+  matchOptions.dataList = [];
+  heroOptions.tableList = [];
+  heroOptions.dataList = [];
+  playersOptions.tableList = [];
+  playersOptions.dataList = [];
+};
+
+const init = async teamId => {
   loading.value = true;
-  await getTeamMatchList();
-  await getPlayerList();
-  await getHeroList();
+  reset();
+  await getTeamMatchList(teamId);
+  await getPlayerList(teamId);
+  await getHeroList(teamId);
   setTimeout(() => {
     loading.value = false;
   }, 1000);
 };
 
 defineExpose({
+  init,
   playersOptions,
   heroOptions,
   matchOptions
 });
 
 onMounted(() => {
-  init();
+  init(props.teamId);
 });
 </script>
 <style lang="scss">

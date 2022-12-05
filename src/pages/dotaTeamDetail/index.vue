@@ -1,7 +1,7 @@
 <template>
   <page-header title="队伍详情" back hidden-breadcrumb @on-back="back" />
   <div class="dota-team-detail main-container">
-    <team-background :team-id="teamId" />
+    <team-background ref="teamBgRef" :team-id="teamId" />
     <div class="team-content">
       <Tabs class="tab-animate" :animated="false" @on-click="tabClick">
         <TabPane label="概观" name="overview"><overview ref="overviewRef" :team-id="teamId" /></TabPane>
@@ -13,7 +13,7 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import teamBackground from './components/teamBackground.vue';
 import overview from './components/overview.vue';
@@ -23,8 +23,9 @@ import record from './components/record.vue';
 
 const route = useRoute();
 const router = useRouter();
-const teamId = ref(route.params.id);
+const teamId = ref(route.params.teamId);
 const overviewRef = ref({});
+const teamBgRef = ref({});
 
 const back = () => {
   router.push({ path: '/dota-team' });
@@ -36,6 +37,15 @@ const tabClick = () => {
     behavior: 'smooth'
   });
 };
+
+watch(route, newValue => {
+  const newTeamId = newValue.params.teamId;
+  if (teamId.value !== newTeamId) {
+    teamId.value = newTeamId;
+    teamBgRef.value.getTeamDetail(newTeamId);
+    overviewRef.value.init(newTeamId);
+  }
+});
 </script>
 <style lang="scss">
 .dota-team-detail {

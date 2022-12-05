@@ -35,7 +35,7 @@ const anchorList = [
   { title: '技能', name: 'skill' }
 ];
 const getHeroDetail = async () => {
-  const heroId = route.params.id;
+  const heroId = route.params.heroId;
   if (!heroId) {
     return;
   }

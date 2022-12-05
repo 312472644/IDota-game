@@ -14,8 +14,16 @@ const routes = [
         component: () => import('@/pages/dotaAllEvent/index.vue')
       },
       {
-        path: '/dota-data/dota-event-detail/:id',
+        path: '/dota-data/dota-event-detail/:eventId',
         component: () => import('@/pages/dotaEventDetail/index.vue')
+      },
+      {
+        path: '/dota-data/dota-match-detail/:matchId',
+        component: () => import('@/pages/dotaMatchDetail/index.vue')
+      },
+      {
+        path: '/dota-data/dota-player-detail/:accountId',
+        component: () => import('@/pages/dotaPlayerDetail/index.vue')
       }
     ]
   },
@@ -28,7 +36,7 @@ const routes = [
         component: () => import('@/pages/dotaHero/index.vue')
       },
       {
-        path: '/dota-hero/dota-hero-detail/:id',
+        path: '/dota-hero/dota-hero-detail/:heroId',
         component: () => import('@/pages/dotaHeroDetail/index.vue')
       }
     ]
@@ -42,7 +50,7 @@ const routes = [
         component: () => import('@/pages/dotaTeam/index.vue')
       },
       {
-        path: '/dota-team/dota-team-detail/:id',
+        path: '/dota-team/dota-team-detail/:teamId',
         component: () => import('@/pages/dotaTeamDetail/index.vue')
       }
     ]

@@ -38,17 +38,21 @@ const props = defineProps({
 
 const loading = ref(false);
 const teamInfo = ref({});
-const getTeamDetail = async () => {
+const getTeamDetail = async teamId => {
   loading.value = true;
-  const response = await getTeamDetailAPI(props.teamId);
+  const response = await getTeamDetailAPI(teamId);
   teamInfo.value = response.data || {};
   setTimeout(() => {
     loading.value = false;
   }, 1000);
 };
 
+defineExpose({
+  getTeamDetail
+});
+
 onMounted(() => {
-  getTeamDetail();
+  getTeamDetail(props.teamId);
 });
 </script>
 <style lang="scss">
