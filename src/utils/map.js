@@ -9,4 +9,15 @@ const heroMap = {
   2: { primaryAttrName: '智力', primaryAttrLogo: intelligence }
 };
 
-export { heroMap };
+// 天梯段位
+const rankTierMap = new Map();
+rankTierMap.set(10, '先锋');
+rankTierMap.set(20, '卫士');
+rankTierMap.set(30, '中军');
+rankTierMap.set(40, '统帅');
+rankTierMap.set(50, '传奇');
+rankTierMap.set(60, '万古流芳');
+rankTierMap.set(70, '超凡入圣');
+rankTierMap.set(80, '冠绝一世');
+
+export { heroMap, rankTierMap };

@@ -5,7 +5,7 @@
       <Table class="table" :columns="columns" :data="data">
         <template #name="{ row }">
           <div class="inline-logo-box">
-            <span :style="`background-image:url(${row.avatar})`" class="inline-logo"></span>
+            <table-image :src="row.avatar" fit="cover" />
             <span class="link" @click="toPlayerDetail(row)">{{ row.name }}</span>
             <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
           </div>

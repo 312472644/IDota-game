@@ -77,7 +77,7 @@ const getCacheHeroInfo = heroId => {
     return {};
   }
   const heroCNList = JSON.parse(localStorage.getItem('heroList'));
-  return heroCNList.find(item => item.id === heroId);
+  return heroCNList.find(item => item.id.toString() === heroId.toString());
 };
 
 export { jsonp, throttle, formatTimeStampMS, getCacheHeroInfo };

@@ -42,10 +42,11 @@ const hooksValue = reactive({
 });
 
 const callback = (dataList = []) => {
-  const { pageVO, tableList, pageChange } = usePageQuery(dataList, 10);
+  const { pageVO, tableList, pageChange, sizeChange } = usePageQuery(dataList, 10);
   hooksValue.pageVO = pageVO;
   hooksValue.tableList = tableList;
   hooksValue.pageChange = pageChange;
+  hooksValue.sizeChange = sizeChange;
 };
 
 watch(props, newValue => {

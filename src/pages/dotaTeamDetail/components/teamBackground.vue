@@ -58,7 +58,7 @@ onMounted(() => {
 <style lang="scss">
 .team-bg-container {
   padding: 20px;
-  min-height: 50px;
+  min-height: 80px;
   .team-bg-content {
     display: flex;
   }

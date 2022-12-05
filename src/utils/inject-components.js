@@ -20,9 +20,10 @@ import {
   Card,
   PageHeader,
   Circle,
-  Page
+  Page,
+  Tooltip
 } from 'view-ui-plus';
-import { ScrollTop, Anchor, AnchorLink, WeChatBarCode, Empty, PageLoading } from '@/components';
+import { ScrollTop, Anchor, AnchorLink, WeChatBarCode, Empty, PageLoading, TableImage } from '@/components';
 import 'view-ui-plus/dist/styles/viewuiplus.css';
 
 const componentMap = {
@@ -53,7 +54,9 @@ const componentMap = {
   AnchorLink,
   WeChatBarCode,
   Empty,
-  PageLoading
+  PageLoading,
+  Tooltip,
+  TableImage
 };
 
 const injectComponents = app => {

@@ -18,6 +18,8 @@ service.interceptors.request.use(async config => {
   const cacheHeroList = localStorage.getItem('heroList');
   // 缓存中文英雄列表
   if (!cacheHeroList) {
+    // 防止接口多次调用
+    localStorage.setItem('heroList', 'loading');
     const response = await axios.get('https://www.dota2.com.cn/datafeed/heroList?task=herolist');
     localStorage.setItem('heroList', JSON.stringify(response.data.result.heroes));
   }
@@ -30,7 +32,7 @@ service.interceptors.response.use(
   },
   error => {
     Message.error({
-      content: '请求错误~'
+      content: '请求错误,请刷新下页面试试~'
     });
     return Promise.reject(error);
   }

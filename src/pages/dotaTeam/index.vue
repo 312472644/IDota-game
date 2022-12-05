@@ -7,7 +7,7 @@
       <template #name="{ row }">
         <div class="team">
           <div class="team-logo">
-            <div class="logo" :style="`background-image:url(${row.logo_url || logoURL})`"></div>
+            <table-image :src="row.logo_url || logoURL" />
           </div>
           <div class="team-detail">
             <div class="team-name">
@@ -133,6 +133,12 @@ onMounted(() => {
     .team-date {
       color: #808695;
     }
+  }
+  .ivu-image-img {
+    border-radius: 50%;
+    background: #333;
+    vertical-align: middle;
+    margin-right: 10px;
   }
 }
 </style>

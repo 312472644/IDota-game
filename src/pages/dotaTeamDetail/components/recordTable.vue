@@ -27,7 +27,7 @@
         </template>
         <template #opposing="{ row }">
           <div class="inline-logo-box">
-            <span :style="`background-image:url(${row.opposing_team_logo})`" class="inline-logo"></span>
+            <table-image :src="row.opposing_team_logo" />
             <span class="link" @click="toTeamDetail(row)">{{ row.opposing_team_name }}</span>
             <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
           </div>

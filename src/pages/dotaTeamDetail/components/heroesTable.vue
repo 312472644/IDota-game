@@ -5,7 +5,7 @@
       <Table class="table" :columns="columns" :data="data">
         <template #hero_id="{ row }">
           <div class="inline-logo-box">
-            <img :src="row.avatar" class="inline-logo" />
+            <table-image :src="row.avatar" fit="cover" />
             <span class="link" @click="toHeroDetail(row)">{{ row.heroCnName }}</span>
             <Icon type="ios-arrow-forward" size="13" color="#2d8cf0" />
           </div>
@@ -29,6 +29,6 @@ const props = defineProps({
 
 const router = useRouter();
 const toHeroDetail = row => {
-  router.push({ path: `/dota-hero/dota-hero-detail/${row.hero_id}` });
+  router.push({ path: `/dota-data/dota-hero-summary/${row.hero_id}` });
 };
 </script>

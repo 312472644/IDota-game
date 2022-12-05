@@ -3,7 +3,7 @@
   <div class="dota-team-detail main-container">
     <team-background ref="teamBgRef" :team-id="teamId" />
     <div class="team-content">
-      <Tabs class="tab-animate" :animated="false" @on-click="tabClick">
+      <Tabs class="tab-animate tab-center" :animated="false" @on-click="tabClick">
         <TabPane label="概观" name="overview"><overview ref="overviewRef" :team-id="teamId" /></TabPane>
         <TabPane label="近期战绩" name="record"><record :options="overviewRef.matchOptions" /></TabPane>
         <TabPane label="英雄" name="heroes"><heroes :options="overviewRef.heroOptions" /></TabPane>
@@ -40,7 +40,7 @@ const tabClick = () => {
 
 watch(route, newValue => {
   const newTeamId = newValue.params.teamId;
-  if (teamId.value !== newTeamId) {
+  if (newTeamId && teamId.value !== newTeamId) {
     teamId.value = newTeamId;
     teamBgRef.value.getTeamDetail(newTeamId);
     overviewRef.value.init(newTeamId);
@@ -52,12 +52,14 @@ watch(route, newValue => {
   .team-content {
     padding: 0 20px 20px 20px;
   }
-  .overview-card {
-    margin-bottom: 10px;
-    .title {
-      font-size: 14px;
-      padding-bottom: 10px;
-    }
+  .ivu-image {
+    margin-right: 10px;
+  }
+  .ivu-image-img {
+    border-radius: 50%;
+    background: #333;
+    vertical-align: middle;
+    margin-right: 10px;
   }
 }
 </style>

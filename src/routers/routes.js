@@ -24,6 +24,10 @@ const routes = [
       {
         path: '/dota-data/dota-player-detail/:accountId',
         component: () => import('@/pages/dotaPlayerDetail/index.vue')
+      },
+      {
+        path: '/dota-data/dota-hero-summary/:heroId',
+        component: () => import('@/pages/dotaHeroSummary/index.vue')
       }
     ]
   },
